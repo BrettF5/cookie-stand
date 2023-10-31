@@ -1,2 +1,10 @@
-# cookie-stand
-Code Fellows Lab 06 Cookie Stand
+# LAB - Code 201 Lab 06
+
+## Salmon Cookies
+
+### Author: Brett
+
+### Lighthouse Accessibility Report Score:
+
+### Updates:
+Oct 30 - Adding index.html, sales.html, file structure. CSS and JS.  Getting basic html formation and JS started.
