@@ -1,122 +1,134 @@
-'use strict';
 
-const hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-let totalSold = 0;
+// Make Store Hours array
+const eachHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-let seattle = {
-    location: 'Seattle',
+// Need to make a Seattle Object
+
+const seattle = {
+    name: 'Seattle',
     minCustomers: 23,
     maxCustomers: 65,
-    avgCookiesCusomers: 6.3,
-    sales: [],
-    estimate: function() {
-        this.sales = estimateSales(this);
+    avgCookieSale: 6.3,
+    saleNumber: [],
+    cookieEst: function() {
+        this.saleNumber = estSalesHour(this);
     },
-}
+};
 
-let tokyo = {
-    location: 'Tokyo',
+// Need to make a Tokyo Object
+
+const tokyo = {
+    name: 'Tokyo',
     minCustomers: 3,
     maxCustomers: 24,
-    avgCookiesCusomers: 1.2,
-    sales: [],
-    estimate: function() {
-        this.sales = estimateSales(this);
+    avgCookieSale: 1.2,
+    saleNumber: [],
+    cookieEst: function() {
+        this.saleNumber = estSalesHour(this);
     },
-}
+};
 
-let dubai = {
-    location: 'Dubai',
+// Need to make a Dubai Object
+
+const dubai = {
+    name: 'Dubai',
     minCustomers: 11,
     maxCustomers: 38,
-    avgCookiesCusomers: 3.7,
-    sales: [],
-    estimate: function() {
-        this.sales = estimateSales(this);
+    avgCookieSale: 3.7,
+    saleNumber: [],
+    cookieEst: function() {
+        this.saleNumber = estSalesHour(this);
     },
-}
+};
 
-let paris = {
-    location: 'Paris',
+// Need to make a Paris Object
+
+const paris = {
+    name: 'Paris',
     minCustomers: 20,
     maxCustomers: 38,
-    avgCookiesCusomers: 2.3,
-    sales: [],
-    estimate: function() {
-        this.sales = estimateSales(this);
+    avgCookieSale: 2.3,
+    saleNumber: [],
+    cookieEst: function() {
+        this.saleNumber = estSalesHour(this);
     },
-}
+};
 
-let lima = {
-    location: 'lima',
+// Need to make a Lima Object
+
+const lima = {
+    name: 'Lima',
     minCustomers: 2,
     maxCustomers: 16,
-    avgCookiesCusomers: 4.6,
-    sales: [],
-    estimate: function() {
-        this.sales = estimateSales(this);
+    avgCookieSale: 4.6,
+    saleNumber: [],
+    cookieEst: function() {
+        this.saleNumber = estSalesHour(this);
     },
-}
+};
 
-//initialize Sales
-seattle.estimate();
-tokyo.estimate();
-dubai.estimate();
-paris.estimate();
-lima.estimate();
+// initialize sales
+seattle.cookieEst();
+tokyo.cookieEst();
+dubai.cookieEst();
+paris.cookieEst();
+lima.cookieEst()
 
-function estimateSales(store) {
-  const sales = [];
-  for (let i = 0; i < hoursOpen.length; i++) {
-    const numCustomers = randomInRange(store.minCustomers, store.maxCustomers);
-    const hourSales = Math.ceil(numCustomers * store.avgCookiesCusomers);
-    sales.push(hourSales);
-  }
-  return sales;
-}
-
-
-function randomInRange(min, max) {
+// "standalone" random function calcuator for min max range, round down.
+function randomSales(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
-let container = document.getElementById('root');
-
-function render(store) {
-    // need an ariticel per cooki stand
-    let cookieStandArticle = document.createElement('article');
-    container.appendChild(cookieStandArticle);
-
-    let heading = document.createElement('h2');
-    cookieStandArticle.appendChild(heading);
-    heading.textContent = store.location;
-
-    let hoursList = document.createElement('li');
-    cookieStandArticle.appendChild(hoursList);
-
-    for(let i=0; i<seattle.sales.length; i++) {
-        let salesItem = document.createElement('li');
-        hoursList.appendChild(salesItem);
-        let cookieSoldThisHour = store.sales[i];
-        totalSold += cookieSoldThisHour;
-        let salesInfo = `${hoursOpen[i]} ${cookieSoldThisHour} cookies`;
-        salesItem.textContent = salesInfo;
+// Function for calculating the store simulated cookies sold each hour
+function estSalesHour(store) {
+    const sale = [];
+    for (let i = 0; i < eachHour.length; i++) {
+        const numberCustomerHour = randomSales(store.minCustomers, store.maxCustomers);
+        const eachHourSale = Math.ceil(numberCustomerHour * store.avgCookieSale);
+        sale.push(eachHourSale);
     }
-
-
-    // add total line
-    const totalItem = document.createElement('li');
-    hoursList.appendChild(totalItem);
-    const totalInfo = `Total: ${totalSold} cookie sold`;
-    totalItem.textContent = totalInfo;
-
+    return sale;
 }
 
+// DOM add objects to HTML
+// Add container to <div>
+const salmonContainerElement = document.getElementById('salmonCookies');
 
-render(seattle);
-render(tokyo);
-render(dubai);
-render(paris);
-render(lima);
+// Function rendoring DOM HTML
+
+function renderStore(store) {
+    //Create new element ariticle and attach it to div
+    let newArticleElement = document.createElement('article');
+    //Append to parent Element salmonContainerElement
+    salmonContainerElement.appendChild(newArticleElement);
+
+    //Add h2 element with store location name
+    let newHeaderElement = document.createElement('h2');
+    //Append to partent Element salmoncontainerElement
+    newArticleElement.appendChild(newHeaderElement);
+    //Add need text
+    newHeaderElement.textContent = store.name;
+
+    // Add unordered list for times
+    const hoursTimeElement = document.createElement('ul');
+    newArticleElement.appendChild(hoursTimeElement);
+    // Add li elements and attach each store hour
+    
+    let hourSold = 0;
+
+    for (let i = 0; i < eachHour.length; i++) {
+        const liHour = document.createElement('li');
+        hoursTimeElement.appendChild(liHour);
+        const cookieSoldThisHour = store.saleNumber[i];
+        hourSold += cookieSoldThisHour;
+        const salesTextLi = `${eachHour[i]}: ${cookieSoldThisHour} cookies`;
+        liHour.textContent = salesTextLi;
+    }
+}
+
+renderStore(seattle);
+renderStore(tokyo);
+renderStore(dubai);
+renderStore(paris);
+renderStore(lima);
