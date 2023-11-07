@@ -125,6 +125,12 @@ function renderStore(store) {
         const salesTextLi = `${eachHour[i]}: ${cookieSoldThisHour} cookies`;
         liHour.textContent = salesTextLi;
     }
+    
+    // add total line
+    const salesTotal = document.createElement('li');
+    hoursTimeElement.appendChild(salesTotal);
+    const totalInfo = `Total: ${hourSold} cookies sold`;
+    salesTotal.textContent = totalInfo;
 }
 
 renderStore(seattle);

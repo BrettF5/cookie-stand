@@ -68,3 +68,13 @@
     list-style-type: none;
     color: gray;
   } 
+
+  th {
+    background-color:  gray;
+    color: white;
+  }
+
+  td {
+    background-color: salmon;
+    color: black
+  }
