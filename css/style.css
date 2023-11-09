@@ -57,17 +57,10 @@
     font-family: Arial, sans-serif;
 }
 
-
-  ul {
-    margin-left: 1rem;
+  table {
+    border-collapse: collapse;
+    width: 100%;
   }
-
-  ul li {
-    margin-top: 1rem;
-    line-height: 8px;
-    list-style-type: none;
-    color: gray;
-  } 
 
   th {
     background-color:  gray;
@@ -76,5 +69,7 @@
 
   td {
     background-color: salmon;
-    color: black
+    color: black;
+    border: 1px solid black;
+
   }
