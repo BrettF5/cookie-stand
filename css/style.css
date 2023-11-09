@@ -57,18 +57,6 @@
     font-family: Arial, sans-serif;
 }
 
-
-  ul {
-    margin-left: 1rem;
-  }
-
-  ul li {
-    margin-top: 1rem;
-    line-height: 8px;
-    list-style-type: none;
-    color: gray;
-  } 
-
   table {
     border-collapse: collapse;
     width: 100%;

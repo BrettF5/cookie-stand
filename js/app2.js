@@ -39,8 +39,6 @@ localContainerElement.appendChild(articleElem);
 const tableElem = document.createElement('table');
 articleElem.appendChild(tableElem);
 
-
-// add the table sales header 
 // add table head
 const tableHeadElem = document.createElement('thead');
 tableElem.appendChild(tableHeadElem);
@@ -93,8 +91,6 @@ StoreLocation.prototype.addCellsData = function() {
 }
 
 
-
-
 const seattleWithConstructor = new StoreLocation('Seattle', 23, 65, 6.3);
 seattleWithConstructor.addCellsData();
 const tokyoWithConstructor = new StoreLocation('Tokyo', 3, 24, 1.2);
@@ -106,5 +102,63 @@ parisWithConstructor.addCellsData();
 const limaWithConstructor = new StoreLocation('Lima', 2, 16, 4.6);
 limaWithConstructor.addCellsData();
 
+// Array to store store locations
+const locations = [seattleWithConstructor, tokyoWithConstructor, dubaiWithConstructor, parisWithConstructor, limaWithConstructor];
+
+// Function to calculate totals for each hour
+function calculateHourlyTotals() {
+    const hourlyTotals = new Array(eachHour.length).fill(0);
+  
+    for (let i = 0; i < eachHour.length; i++) {
+      for (let j = 0; j < locations.length; j++) {
+        hourlyTotals[i] += locations[j].sales[i];
+      }
+    }
+  
+    return hourlyTotals;
+  }
+
+// Function to add the footer row with hourly totals
+function addFooterRow() {
+  const footerRow = document.createElement('tr');
+  tableElem.appendChild(footerRow);
+
+  const footerLabel = document.createElement('th');
+  footerRow.appendChild(footerLabel);
+  footerLabel.textContent = 'Hourly Totals for All Locations';
+
+  const hourlyTotals = calculateHourlyTotals();
+
+  let totalAllLocations = 0;
+
+  for (let i = 0; i < eachHour.length; i++) {
+    const hourlyTotalCell = document.createElement('td');
+    footerRow.appendChild(hourlyTotalCell);
+    hourlyTotalCell.textContent = hourlyTotals[i];
+    totalAllLocations += hourlyTotals[i];
+  }
+
+  const totalAllLocationsCell = document.createElement('th');
+  footerRow.appendChild(totalAllLocationsCell);
+  totalAllLocationsCell.textContent = totalAllLocations;
 
 
+}
+
+// Function to calculate totals for each hour
+function calculateHourlyTotals() {
+  const hourlyTotals = new Array(eachHour.length).fill(0);
+
+  for (let i = 0; i < eachHour.length; i++) {
+    for (let j = 0; j < locations.length; j++) {
+      hourlyTotals[i] += locations[j].sales[i];
+    }
+  }
+
+  return hourlyTotals;
+}
+
+
+// Call the function to calculate totals and add the footer row
+calculateHourlyTotals();
+addFooterRow();
