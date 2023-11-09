@@ -69,6 +69,7 @@ StoreLocation.prototype.addCellsData = function() {
   tableHeadElem.appendChild(locationSaleDataRow);
 
   const locationStore = document.createElement('td');
+  locationStore.className = 'custom-store';
   locationSaleDataRow.appendChild(locationStore);
   locationStore.textContent = `${this.name}`;
 
@@ -133,6 +134,7 @@ function addFooterRow() {
 
   for (let i = 0; i < eachHour.length; i++) {
     const hourlyTotalCell = document.createElement('td');
+    hourlyTotalCell.className = 'custom-td';
     footerRow.appendChild(hourlyTotalCell);
     hourlyTotalCell.textContent = hourlyTotals[i];
     totalAllLocations += hourlyTotals[i];
