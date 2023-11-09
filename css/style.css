@@ -6,7 +6,6 @@
   header h1 {
     color: salmon;
     font-size: 3em;
-    font-weight: bold;
     font-style: italic;
     text-align: center;
     padding: 1em;
@@ -45,8 +44,26 @@
   h1, h2 {
     font-family: Righteous;
     margin-left: 1rem;
+    font-weight: bold;
+  }
+
+  .custom-li {
+    font-weight: normal;
+    font-size: 16px;
   }
   
+  .custom-td {
+    background-color:  gray;
+    color: white;
+    border: 0px;
+    text-align: center;
+  }
+
+  .custom-store {
+    text-align: left;
+    
+  }
+
   footer {
     background: #ccc;
     padding: 3em;
@@ -71,5 +88,6 @@
     background-color: salmon;
     color: black;
     border: 1px solid black;
-
+    text-align: center;
   }
+
