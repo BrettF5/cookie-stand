@@ -5,7 +5,8 @@
 ### Author: Brett
 
 ### Lighthouse Accessibility Report Score:
-![Light House report for Lab 06. Oct 31](https://brettf5.github.io/cookie-stand/img/Screenshot 2023-10-31 230728.png)
+![Light House report for home index.html](https://brettf5.github.io/cookie-stand/img/SalmonCookieIndexLightHouse.png)
+![Light House report for Sales.html](https://brettf5.github.io/cookie-stand/img/SalmonCookieSalesLightHouse.png)
 
 ### Updates:
 Oct 30 - Adding index.html, sales.html, file structure. CSS and JS.  Getting basic html formation and JS started.
