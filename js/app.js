@@ -3,6 +3,24 @@
 // Make Store Hours array
 const eachHour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
+// "standalone" random function calcuator for min max range, round down.
+function randomSales(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// Function to calculate totals for each hour
+function calculateHourlyTotals() {
+    const hourlyTotals = new Array(eachHour.length).fill(0);
+  
+    for (let i = 0; i < eachHour.length; i++) {
+      for (let j = 0; j < locations.length; j++) {
+        hourlyTotals[i] += locations[j].sales[i];
+      }
+    }
+  
+    return hourlyTotals;
+  }
+
 //contructor function start with a Capital!!!
 
 function StoreLocation(name, minCustomers, maxCustomers, avgCookieSale) {
@@ -11,12 +29,6 @@ function StoreLocation(name, minCustomers, maxCustomers, avgCookieSale) {
     this.maxCustomers = maxCustomers;
     this.avgCookieSale = avgCookieSale;
     this.sales = this.generateSales();
-}
-
-
-// "standalone" random function calcuator for min max range, round down.
-function randomSales(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 StoreLocation.prototype.generateSales = function() {
@@ -68,7 +80,8 @@ StoreLocation.prototype.addCellsData = function() {
   const locationSaleDataRow = document.createElement('tr');
   tableHeadElem.appendChild(locationSaleDataRow);
 
-  const locationStore = document.createElement('th');
+  const locationStore = document.createElement('td');
+  locationStore.className = 'custom-store';
   locationSaleDataRow.appendChild(locationStore);
   locationStore.textContent = `${this.name}`;
 
@@ -90,7 +103,6 @@ StoreLocation.prototype.addCellsData = function() {
 
 }
 
-
 const seattleWithConstructor = new StoreLocation('Seattle', 23, 65, 6.3);
 seattleWithConstructor.addCellsData();
 const tokyoWithConstructor = new StoreLocation('Tokyo', 3, 24, 1.2);
@@ -104,19 +116,6 @@ limaWithConstructor.addCellsData();
 
 // Array to store store locations
 const locations = [seattleWithConstructor, tokyoWithConstructor, dubaiWithConstructor, parisWithConstructor, limaWithConstructor];
-
-// Function to calculate totals for each hour
-function calculateHourlyTotals() {
-    const hourlyTotals = new Array(eachHour.length).fill(0);
-  
-    for (let i = 0; i < eachHour.length; i++) {
-      for (let j = 0; j < locations.length; j++) {
-        hourlyTotals[i] += locations[j].sales[i];
-      }
-    }
-  
-    return hourlyTotals;
-  }
 
 // Function to add the footer row with hourly totals
 function addFooterRow() {
@@ -133,6 +132,7 @@ function addFooterRow() {
 
   for (let i = 0; i < eachHour.length; i++) {
     const hourlyTotalCell = document.createElement('td');
+    hourlyTotalCell.className = 'custom-td';
     footerRow.appendChild(hourlyTotalCell);
     hourlyTotalCell.textContent = hourlyTotals[i];
     totalAllLocations += hourlyTotals[i];
@@ -141,23 +141,7 @@ function addFooterRow() {
   const totalAllLocationsCell = document.createElement('th');
   footerRow.appendChild(totalAllLocationsCell);
   totalAllLocationsCell.textContent = totalAllLocations;
-
-
 }
-
-// Function to calculate totals for each hour
-function calculateHourlyTotals() {
-  const hourlyTotals = new Array(eachHour.length).fill(0);
-
-  for (let i = 0; i < eachHour.length; i++) {
-    for (let j = 0; j < locations.length; j++) {
-      hourlyTotals[i] += locations[j].sales[i];
-    }
-  }
-
-  return hourlyTotals;
-}
-
 
 // Call the function to calculate totals and add the footer row
 calculateHourlyTotals();
